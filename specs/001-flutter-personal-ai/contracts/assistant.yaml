@@ -1,0 +1,275 @@
+openapi: 3.0.3
+info:
+  title: Assistant Orchestration API
+  version: 0.2.0
+servers:
+  - url: https://api.dev.personal-assistant/v1
+    description: Development environment (Cloud Run)
+  - url: http://localhost:8787
+    description: Local mock middleware
+security:
+  - bearerAuth: []
+  - serviceAuth: []
+paths:
+  /assistant/session:
+    post:
+      summary: Open or resume an assistant interaction session
+      description: Creates a conversational session scoped to the authenticated user and channel, returning warmup context for the client.
+      operationId: openSession
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OpenSessionRequest'
+      responses:
+        '200':
+          description: Session created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SessionResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '429':
+          $ref: '#/components/responses/RateLimitError'
+  /assistant/suggestions:
+    get:
+      summary: Retrieve proactive suggestions for the authenticated user
+      operationId: listSuggestions
+      parameters:
+        - $ref: '#/components/parameters/Cursor'
+        - $ref: '#/components/parameters/MaxResults'
+        - in: query
+          name: filter
+          schema:
+            type: string
+          description: Optional filter for suggestion_type (comma-separated values)
+      responses:
+        '200':
+          description: Suggestions fetched
+          headers:
+            X-Next-Cursor:
+              description: Cursor for fetching the next page of suggestions
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuggestionsResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '429':
+          $ref: '#/components/responses/RateLimitError'
+  /assistant/feedback:
+    post:
+      summary: Record user response to a suggestion
+      operationId: submitFeedback
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FeedbackRequest'
+      responses:
+        '204':
+          description: Feedback recorded
+        '400':
+          description: Invalid payload
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '429':
+          $ref: '#/components/responses/RateLimitError'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+    serviceAuth:
+      type: apiKey
+      in: header
+      name: X-Service-Token
+  parameters:
+    Cursor:
+      in: query
+      name: cursor
+      schema:
+        type: string
+      description: Pagination token returned from the previous request
+    MaxResults:
+      in: query
+      name: max_results
+      schema:
+        type: integer
+        default: 10
+        minimum: 1
+        maximum: 50
+      description: Max number of suggestions to return
+  responses:
+    UnauthorizedError:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    RateLimitError:
+      description: Request rejected due to rate limits (100 RPM per user, 20 concurrent session creations)
+      headers:
+        Retry-After:
+          schema:
+            type: integer
+          description: Seconds until request may be retried
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    OpenSessionRequest:
+      type: object
+      required: [channel, locale]
+      properties:
+        channel:
+          type: string
+          enum: [text, voice]
+        locale:
+          type: string
+          example: en-US
+        resume_session_id:
+          type: string
+        client_capabilities:
+          type: object
+          properties:
+            supports_voice_feedback:
+              type: boolean
+            supports_offline_mode:
+              type: boolean
+    SessionResponse:
+      type: object
+      required: [session_id, expires_at, warmup_summary]
+      properties:
+        session_id:
+          type: string
+        expires_at:
+          type: string
+          format: date-time
+        warmup_summary:
+          type: string
+        personalization_state:
+          $ref: '#/components/schemas/PersonalizationState'
+    PersonalizationState:
+      type: object
+      properties:
+        daily_focus_theme:
+          type: string
+        upcoming_conflicts:
+          type: integer
+        quiet_hours_active:
+          type: boolean
+    SuggestionsResponse:
+      type: object
+      required: [suggestions]
+      properties:
+        suggestions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Suggestion'
+    Suggestion:
+      type: object
+      required: [id, message, explanation, confidence_score, actions, status]
+      properties:
+        id:
+          type: string
+        suggestion_type:
+          type: string
+          enum: [daily_plan, reminder, summary, automation, alert]
+        message:
+          type: string
+        explanation:
+          $ref: '#/components/schemas/Explanation'
+        confidence_score:
+          type: number
+          minimum: 0
+          maximum: 1
+        actions:
+          type: array
+          items:
+            $ref: '#/components/schemas/SuggestionAction'
+        status:
+          type: string
+          enum: [pending, delivered, expired]
+        boundary_checks:
+          type: array
+          items:
+            $ref: '#/components/schemas/BoundaryCheck'
+    Explanation:
+      type: object
+      required: [sources, rationale, next_steps]
+      properties:
+        sources:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExplanationSource'
+        rationale:
+          type: string
+        confidence_band:
+          type: string
+          enum: [very_low, low, medium, high, very_high]
+        next_steps:
+          type: array
+          items:
+            type: string
+    ExplanationSource:
+      type: object
+      required: [signal_id, summary]
+      properties:
+        signal_id:
+          type: string
+        summary:
+          type: string
+    BoundaryCheck:
+      type: object
+      required: [rule_id, status]
+      properties:
+        rule_id:
+          type: string
+        status:
+          type: string
+          enum: [passed, overridden, blocked]
+        note:
+          type: string
+    SuggestionAction:
+      type: object
+      required: [type, label]
+      properties:
+        type:
+          type: string
+          enum: [accept, decline, snooze, automate]
+        label:
+          type: string
+        metadata:
+          type: object
+          additionalProperties: true
+    FeedbackRequest:
+      type: object
+      required: [suggestion_id, status]
+      properties:
+        suggestion_id:
+          type: string
+        status:
+          type: string
+          enum: [accepted, declined, snoozed]
+        note:
+          type: string
+        quiet_hours_override:
+          type: boolean
+    ErrorResponse:
+      type: object
+      required: [code, message]
+      properties:
+        code:
+          type: string
+          example: unauthorized
+        message:
+          type: string
+        correlation_id:
+          type: string

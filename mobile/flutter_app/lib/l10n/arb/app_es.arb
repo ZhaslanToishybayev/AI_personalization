@@ -1,0 +1,116 @@
+{
+  "@@locale": "es",
+  "appTitle": "Asistente personal de IA",
+  "homeToday": "Hoy",
+  "homeLoadingPlan": "Obteniendo tu plan...",
+  "homeSamplePlanTitle": "Plan diario",
+  "homeSampleGreeting": "Buenos días, Casey",
+  "homeSampleSummary": "Bloque de enfoque a las 09:30. Dos seguimientos de alta prioridad listos.",
+  "homeSampleAgendaTitle": "Agenda",
+  "homeSampleSuggestionsTitle": "Sugerencias del asistente",
+  "homeSampleFocusTitle": "Tareas de enfoque",
+  "homeSampleSuggestionHoldSeat": "Reservar asiento para el vuelo a Seattle",
+  "homeSampleSuggestionHoldSeatDetail": "El vuelo UA 455 sigue sin confirmarse. ¿Reservar la salida de las 18:15?",
+  "homeSampleSuggestionHoldSeatAction": "Reservar asiento",
+  "homeSampleSuggestionPrep": "Preparar puntos de conversación",
+  "homeSampleSuggestionPrepDetail": "Revisa las métricas de churn antes de la reunión de liderazgo.",
+  "homeSampleSuggestionPrepAction": "Abrir resumen",
+  "homeSampleFocusApproval": "Aprobar resumen de revisión de seguridad",
+  "homeSampleFocusApprovalStatus": "Vence hoy · Asignado a ti",
+  "homeSampleFocusDraft": "Redactar recuento de OKR del T3",
+  "homeSampleFocusDraftStatus": "En progreso",
+  "conflictQuietHoursTitle": "Horas de silencio activas",
+  "conflictQuietHoursDescription": "Enviar ahora rompería las horas de silencio de Casey.",
+  "conflictScheduleStatus": "Programado para {time}",
+  "@conflictScheduleStatus": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "conflictOverrideStatus": "Anulación enviada · usuario notificado",
+  "conflictOverrideFailedStatus": "Error al anular · {error}",
+  "@conflictOverrideFailedStatus": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "conflictScheduleAfterQuietHours": "Programar después de las horas de silencio",
+  "conflictScheduleLater": "Programar más tarde",
+  "conflictSendAnyway": "Enviar de todas formas",
+  "conflictDismiss": "Descartar",
+  "conflictContextNote": "Las horas de silencio terminan a las {time} en {timeZone}.",
+  "@conflictContextNote": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      },
+      "timeZone": {
+        "type": "String"
+      }
+    }
+  },
+  "commonNext": "Siguiente",
+  "commonFinish": "Finalizar",
+  "commonCancel": "Cancelar",
+  "commonNone": "Ninguno",
+  "onboardingWelcomeTitle": "Bienvenido a Asistente Personal de IA",
+  "onboardingWelcomeSubtitle": "Personalizaremos tu asistencia diaria, recopilaremos solo lo que apruebes y podrás ajustarlo en cualquier momento.",
+  "onboardingGetStarted": "Comenzar",
+  "onboardingLocaleTitle": "Configura tu idioma preferido",
+  "onboardingLocaleSubtitle": "La localización ayuda al asistente a adaptar el tono y los resúmenes. Puedes cambiarlo en cualquier momento desde ajustes.",
+  "onboardingChooseLanguage": "Elegir idioma",
+  "onboardingLanguageSet": "Idioma establecido en {language}",
+  "onboardingChannelsTitle": "Elige cómo quieres recibir las actualizaciones",
+  "onboardingCriticalAlertsTitle": "Permitir alertas críticas",
+  "onboardingCriticalAlertsSubtitle": "Para conflictos urgentes y recordatorios sensibles al tiempo",
+  "onboardingQuietHoursTitle": "Configura las horas de silencio",
+  "onboardingQuietHoursSubtitle": "Durante las horas de silencio el asistente pausará las notificaciones no críticas.",
+  "onboardingQuietStartLabel": "Inicio (HH:MM)",
+  "onboardingQuietEndLabel": "Fin (HH:MM)",
+  "onboardingAddBoundary": "Agregar tema límite",
+  "onboardingBoundaryHint": "p. ej., finanzas, salud personal",
+  "onboardingSaveBoundary": "Guardar límite",
+  "onboardingConsentsTitle": "Revisa las preferencias de privacidad",
+  "onboardingAcceptTos": "Acepto los Términos de Servicio",
+  "onboardingTelemetryTitle": "Permito telemetría anonimizada",
+  "onboardingTelemetrySubtitle": "Se utiliza para mejorar el rendimiento y la confiabilidad del asistente",
+  "onboardingViewExport": "Ver opciones de exportación de datos",
+  "onboardingExportDetails": "Exporta datos como JSON o ICS.\nLas solicitudes de eliminación se procesan en 72 horas.",
+  "onboardingSummaryTitle": "¡Todo listo!",
+  "onboardingOfflineBanner": "Modo sin conexión listo: último plan en caché",
+  "onboardingCriticalAllowed": "Permitidas",
+  "onboardingCriticalMuted": "Silenciadas",
+  "onboardingTelemetryEnabled": "Activada",
+  "onboardingTelemetryDisabled": "Desactivada",
+  "onboardingSummaryLocale": "Idioma: {locale}",
+  "onboardingSummaryChannels": "Canales: {channels}",
+  "onboardingSummaryCritical": "Alertas críticas: {status}",
+  "onboardingSummaryQuietHours": "Horas de silencio: {start} — {end}",
+  "onboardingSummaryTelemetry": "Telemetría: {status}",
+  "onboardingSummaryBoundaries": "Límites: {boundaries}",
+  "onboardingLocaleEnglishLabel": "Inglés (EE. UU.)",
+  "onboardingLocaleEnglishName": "Inglés",
+  "onboardingLocaleSpanishLabel": "Español (LatAm)",
+  "onboardingLocaleSpanishName": "Español",
+  "onboardingLocaleGermanLabel": "Alemán (DE)",
+  "onboardingLocaleGermanName": "Alemán",
+  "onboardingChannelCalendar": "Activar sincronización con Calendario",
+  "onboardingChannelGmail": "Activar resúmenes de Gmail",
+  "onboardingChannelPush": "Notificaciones push",
+  "onboardingStepWelcome": "Bienvenida",
+  "onboardingStepLanguage": "Idioma",
+  "onboardingStepChannels": "Canales de notificación",
+  "onboardingStepQuietHours": "Horas de silencio",
+  "onboardingStepConsents": "Consentimientos",
+  "onboardingStepSummary": "Resumen",
+  "summaryFollowUpsTitle": "Seguimientos de hoy",
+  "summarySignalsTitle": "Señales monitoreadas",
+  "summaryOfflineBanner": "Resumen sin conexión en caché",
+  "summaryConfidenceLabel": "Confianza: {value}",
+  "summarySourcesCount": "Fuentes ({count})",
+  "summaryViewSources": "Ver fuentes"
+}

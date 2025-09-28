@@ -1,0 +1,182 @@
+{
+  "@@locale": "en",
+  "appTitle": "Personal AI Assistant",
+  "homeToday": "Today",
+  "homeLoadingPlan": "Fetching your plan...",
+  "homeSampleGreeting": "Good morning, Casey",
+  "homeSampleSummary": "Morning focus block at 09:30. Two high-priority follow-ups ready.",
+  "homeSampleAgendaTitle": "Agenda",
+  "homeSamplePlanTitle": "Daily plan",
+  "homeSampleSuggestionsTitle": "Assistant suggestions",
+  "homeSampleFocusTitle": "Focus tasks",
+  "homeSampleSuggestionHoldSeat": "Hold seat for Seattle flight",
+  "homeSampleSuggestionHoldSeatDetail": "Flight UA 455 still unconfirmed. Reserve 18:15 departure?",
+  "homeSampleSuggestionHoldSeatAction": "Hold seat",
+  "homeSampleSuggestionPrep": "Prepare talking points",
+  "homeSampleSuggestionPrepDetail": "Review churn metrics before leadership sync.",
+  "homeSampleSuggestionPrepAction": "Open summary",
+  "homeSampleFocusApproval": "Approve security review summary",
+  "homeSampleFocusApprovalStatus": "Due today · Assigned to you",
+  "homeSampleFocusDraft": "Draft Q3 OKR recap",
+  "homeSampleFocusDraftStatus": "In progress",
+  "conflictQuietHoursTitle": "Quiet hours active",
+  "conflictQuietHoursDescription": "Sending now would break Casey's quiet hours.",
+  "conflictScheduleStatus": "Scheduled for {time}",
+  "@conflictScheduleStatus": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "conflictOverrideStatus": "Override sent · user notified",
+  "conflictOverrideFailedStatus": "Override failed · {error}",
+  "@conflictOverrideFailedStatus": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "conflictScheduleAfterQuietHours": "Schedule after quiet hours",
+  "conflictScheduleLater": "Schedule later",
+  "conflictSendAnyway": "Send anyway",
+  "conflictDismiss": "Dismiss",
+  "conflictContextNote": "Quiet hours end at {time} in {timeZone}.",
+  "@conflictContextNote": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      },
+      "timeZone": {
+        "type": "String"
+      }
+    }
+  },
+  "commonNext": "Next",
+  "commonFinish": "Finish",
+  "commonCancel": "Cancel",
+  "commonNone": "None",
+  "onboardingWelcomeTitle": "Welcome to Personal AI Assistant",
+  "onboardingWelcomeSubtitle": "We will personalize your daily support, collect only what you approve, and allow you to adjust anytime.",
+  "onboardingGetStarted": "Get started",
+  "onboardingLocaleTitle": "Set your preferred language",
+  "onboardingLocaleSubtitle": "Localization helps the assistant tailor phrasing and summaries. You can change it anytime in settings.",
+  "onboardingChooseLanguage": "Choose language",
+  "onboardingLanguageSet": "Language set to {language}",
+  "@onboardingLanguageSet": {
+    "placeholders": {
+      "language": {
+        "type": "String"
+      }
+    }
+  },
+  "onboardingChannelsTitle": "Choose how you would like to receive updates",
+  "onboardingCriticalAlertsTitle": "Allow critical alerts",
+  "onboardingCriticalAlertsSubtitle": "For urgent conflicts and time-sensitive nudges",
+  "onboardingQuietHoursTitle": "Set quiet hours",
+  "onboardingQuietHoursSubtitle": "During quiet hours the assistant will pause non-critical notifications.",
+  "onboardingQuietStartLabel": "Start (HH:MM)",
+  "onboardingQuietEndLabel": "End (HH:MM)",
+  "onboardingAddBoundary": "Add boundary topic",
+  "onboardingBoundaryHint": "e.g., finances, personal health",
+  "onboardingSaveBoundary": "Save boundary",
+  "onboardingConsentsTitle": "Review privacy preferences",
+  "onboardingAcceptTos": "I agree to the Terms of Service",
+  "onboardingTelemetryTitle": "I allow anonymized telemetry",
+  "onboardingTelemetrySubtitle": "Used to improve assistant performance and reliability",
+  "onboardingViewExport": "View data export options",
+  "onboardingExportDetails": "Export data as JSON or ICS.\nDelete requests honored within 72 hours.",
+  "onboardingSummaryTitle": "You are all set!",
+  "onboardingOfflineBanner": "Offline mode ready — last plan cached",
+  "onboardingCriticalAllowed": "Allowed",
+  "onboardingCriticalMuted": "Muted",
+  "onboardingTelemetryEnabled": "Enabled",
+  "onboardingTelemetryDisabled": "Disabled",
+  "onboardingSummaryLocale": "Locale: {locale}",
+  "@onboardingSummaryLocale": {
+    "placeholders": {
+      "locale": {
+        "type": "String"
+      }
+    }
+  },
+  "onboardingSummaryChannels": "Channels: {channels}",
+  "@onboardingSummaryChannels": {
+    "placeholders": {
+      "channels": {
+        "type": "String"
+      }
+    }
+  },
+  "onboardingSummaryCritical": "Critical alerts: {status}",
+  "@onboardingSummaryCritical": {
+    "placeholders": {
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+  "onboardingSummaryQuietHours": "Quiet hours: {start} — {end}",
+  "@onboardingSummaryQuietHours": {
+    "placeholders": {
+      "start": {
+        "type": "String"
+      },
+      "end": {
+        "type": "String"
+      }
+    }
+  },
+  "onboardingSummaryTelemetry": "Telemetry: {status}",
+  "@onboardingSummaryTelemetry": {
+    "placeholders": {
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+  "onboardingSummaryBoundaries": "Boundaries: {boundaries}",
+  "@onboardingSummaryBoundaries": {
+    "placeholders": {
+      "boundaries": {
+        "type": "String"
+      }
+    }
+  },
+  "onboardingLocaleEnglishLabel": "English (US)",
+  "onboardingLocaleEnglishName": "English",
+  "onboardingLocaleSpanishLabel": "Español (LatAm)",
+  "onboardingLocaleSpanishName": "Spanish",
+  "onboardingLocaleGermanLabel": "Deutsch (DE)",
+  "onboardingLocaleGermanName": "German",
+  "onboardingChannelCalendar": "Enable Calendar Sync",
+  "onboardingChannelGmail": "Enable Gmail Summaries",
+  "onboardingChannelPush": "Push Notifications",
+  "onboardingStepWelcome": "Welcome",
+  "onboardingStepLanguage": "Language",
+  "onboardingStepChannels": "Notification channels",
+  "onboardingStepQuietHours": "Quiet hours",
+  "onboardingStepConsents": "Privacy consents",
+  "onboardingStepSummary": "Summary",
+  "summaryFollowUpsTitle": "Today's follow-ups",
+  "summarySignalsTitle": "Signals monitored",
+  "summaryOfflineBanner": "Offline summary cached",
+  "summaryConfidenceLabel": "Confidence: {value}",
+  "@summaryConfidenceLabel": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "summarySourcesCount": "Sources ({count})",
+  "@summarySourcesCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "summaryViewSources": "View sources"
+}

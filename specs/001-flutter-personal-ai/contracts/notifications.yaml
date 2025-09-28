@@ -1,0 +1,122 @@
+openapi: 3.0.3
+info:
+  title: Notification Coordination API
+  version: 0.1.0
+servers:
+  - url: https://api.dev.personal-assistant/v1
+    description: Development environment
+  - url: http://localhost:8787
+    description: Local mock middleware
+security:
+  - bearerAuth: []
+paths:
+  /notifications/devices:
+    put:
+      summary: Register or update a device for push notifications
+      operationId: registerDevice
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeviceRegistration'
+      responses:
+        '204':
+          description: Device registration updated
+        '400':
+          description: Invalid payload
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /notifications/alerts:
+    post:
+      summary: Queue a critical alert for delivery
+      description: Used by personalization engine to send conflict or urgent updates respecting quiet hours policy.
+      operationId: enqueueAlert
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AlertRequest'
+      responses:
+        '202':
+          description: Alert accepted for delivery
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+  responses:
+    Unauthorized:
+      description: Authentication failed or missing
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    DeviceRegistration:
+      type: object
+      required: [device_id, platform, push_token]
+      properties:
+        device_id:
+          type: string
+        platform:
+          type: string
+          enum: [android, ios]
+        push_token:
+          type: string
+        locale:
+          type: string
+        quiet_hours:
+          $ref: '#/components/schemas/QuietHours'
+        build_number:
+          type: string
+    QuietHours:
+      type: object
+      required: [start, end, timezone]
+      properties:
+        start:
+          type: string
+          example: "22:00"
+        end:
+          type: string
+          example: "07:00"
+        timezone:
+          type: string
+          example: "America/Los_Angeles"
+        allow_critical_overrides:
+          type: boolean
+    AlertRequest:
+      type: object
+      required: [user_id, priority, title, body]
+      properties:
+        user_id:
+          type: string
+        suggestion_id:
+          type: string
+        priority:
+          type: string
+          enum: [normal, critical]
+        title:
+          type: string
+        body:
+          type: string
+        deeplink:
+          type: string
+        quiet_hours_override:
+          type: boolean
+        expires_at:
+          type: string
+          format: date-time
+    ErrorResponse:
+      type: object
+      required: [code, message]
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        correlation_id:
+          type: string

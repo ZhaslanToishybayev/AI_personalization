@@ -1,0 +1,130 @@
+openapi: 3.0.3
+info:
+  title: Context Ingestion API
+  version: 0.1.0
+servers:
+  - url: https://api.dev.personal-assistant/v1
+    description: Development environment
+  - url: http://localhost:8787
+    description: Local mock middleware
+security:
+  - serviceAuth: []
+paths:
+  /context/calendar:
+    post:
+      summary: Ingest calendar deltas for a user
+      description: Called by the Google Workspace connector to push new or updated events.
+      operationId: ingestCalendarEvents
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CalendarIngestRequest'
+      responses:
+        '202':
+          description: Ingestion accepted for asynchronous processing
+        '400':
+          description: Invalid payload
+        '409':
+          description: Sync token expired
+      x-rateLimit:
+        limit: 1200
+        period: minute
+  /context/gmail:
+    post:
+      summary: Ingest high-priority Gmail messages for a user
+      operationId: ingestGmailMessages
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GmailIngestRequest'
+      responses:
+        '202':
+          description: Ingestion accepted
+        '400':
+          description: Invalid payload
+        '409':
+          description: Sync token expired
+components:
+  securitySchemes:
+    serviceAuth:
+      type: apiKey
+      in: header
+      name: X-Service-Token
+  schemas:
+    CalendarIngestRequest:
+      type: object
+      required: [user_id, sync_token, events]
+      properties:
+        user_id:
+          type: string
+        sync_token:
+          type: string
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/CalendarEvent'
+        deleted_event_ids:
+          type: array
+          items:
+            type: string
+    CalendarEvent:
+      type: object
+      required: [external_id, title, start, end]
+      properties:
+        external_id:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        start:
+          type: string
+          format: date-time
+        end:
+          type: string
+          format: date-time
+        attendees:
+          type: array
+          items:
+            type: string
+        conference_link:
+          type: string
+        sensitivity:
+          type: string
+          enum: [normal, private]
+    GmailIngestRequest:
+      type: object
+      required: [user_id, sync_token, messages]
+      properties:
+        user_id:
+          type: string
+        sync_token:
+          type: string
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/GmailMessage'
+    GmailMessage:
+      type: object
+      required: [external_id, received_at, subject, snippet]
+      properties:
+        external_id:
+          type: string
+        received_at:
+          type: string
+          format: date-time
+        subject:
+          type: string
+        snippet:
+          type: string
+        sender:
+          type: string
+        importance:
+          type: string
+          enum: [high, normal]
+        thread_id:
+          type: string

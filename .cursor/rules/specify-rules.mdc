@@ -1,0 +1,24 @@
+# Ai_Personalization Development Guidelines
+
+Auto-generated from all feature plans. Last updated: 2025-09-27
+
+## Active Technologies
+- Dart 3.5 on Flutter 3.x (stable) + Riverpod, flutter_secure_storage, drift (SQLite), firebase_core/firebase_auth/cloud_firestore, speech_to_text, http+gRPC client for AI middleware, build_runner/freezed/json_serializable, flutter_dotenv, mocktail, golden_toolkit (001-flutter-personal-ai)
+
+## Project Structure
+```
+src/
+tests/
+```
+
+## Commands
+# Add commands for Dart 3.5 on Flutter 3.x (stable)
+
+## Code Style
+Dart 3.5 on Flutter 3.x (stable): Follow standard conventions
+
+## Recent Changes
+- 001-flutter-personal-ai: Added Dart 3.5 on Flutter 3.x (stable) + Riverpod, flutter_secure_storage, drift (SQLite), firebase_core/firebase_auth/cloud_firestore, speech_to_text, http+gRPC client for AI middleware, build_runner/freezed/json_serializable, flutter_dotenv, mocktail, golden_toolkit
+
+<!-- MANUAL ADDITIONS START -->
+<!-- MANUAL ADDITIONS END -->
