@@ -16,10 +16,12 @@ class HomeScreen extends StatelessWidget {
         actions: [
           IconButton(
             icon: const Icon(Icons.notifications_outlined),
+            tooltip: 'Notifications',
             onPressed: () {},
           ),
           IconButton(
             icon: const Icon(Icons.settings_outlined),
+            tooltip: 'Settings',
             onPressed: () {},
           ),
         ],
@@ -120,6 +122,7 @@ class HomeScreen extends StatelessWidget {
                 ),
                 IconButton(
                   icon: const Icon(Icons.more_vert),
+                  tooltip: 'More options',
                   onPressed: () {},
                 ),
               ],
@@ -156,6 +159,7 @@ class HomeScreen extends StatelessWidget {
                 ),
                 IconButton(
                   icon: const Icon(Icons.more_vert),
+                  tooltip: 'More options',
                   onPressed: () {},
                 ),
               ],
@@ -244,9 +248,12 @@ class HomeScreen extends StatelessWidget {
           SimpleCard(
             child: Row(
               children: [
-                Checkbox(
-                  value: false,
-                  onChanged: (value) {},
+                Semantics(
+                  label: 'Mark "Review Q4 Report" as complete',
+                  child: Checkbox(
+                    value: false,
+                    onChanged: (value) {},
+                  ),
                 ),
                 Expanded(
                   child: Text(
@@ -261,9 +268,12 @@ class HomeScreen extends StatelessWidget {
           SimpleCard(
             child: Row(
               children: [
-                Checkbox(
-                  value: false,
-                  onChanged: (value) {},
+                Semantics(
+                  label: 'Mark "Update Project Timeline" as complete',
+                  child: Checkbox(
+                    value: false,
+                    onChanged: (value) {},
+                  ),
                 ),
                 Expanded(
                   child: Text(
