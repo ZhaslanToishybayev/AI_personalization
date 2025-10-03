@@ -13,6 +13,28 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'pnpm'
+          cache-dependency-path: api/mock-server/pnpm-lock.yaml
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Install mock server dependencies
+        working-directory: api/mock-server
+        run: corepack pnpm install --frozen-lockfile
+
+      - name: Validate OpenAPI contracts
+        working-directory: api/mock-server
+        run: corepack pnpm validate:openapi
+
+      - name: Build mock server
+        working-directory: api/mock-server
+        run: corepack pnpm build
+
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
@@ -22,10 +44,53 @@ jobs:
         working-directory: mobile/flutter_app
         run: flutter pub get
 
+      - name: Check formatting
+        working-directory: mobile/flutter_app
+        run: flutter format --set-exit-if-changed --dry-run .
+
       - name: Analyze
         working-directory: mobile/flutter_app
-        run: flutter analyze
+        run: flutter analyze --fatal-infos
 
-      - name: Run tests
+      - name: Run unit tests
         working-directory: mobile/flutter_app
-        run: flutter test
+        run: flutter test --coverage
+
+      - name: Upload coverage
+        uses: codecov/codecov-action@v4
+        with:
+          files: mobile/flutter_app/coverage/lcov.info
+          flags: flutter
+        continue-on-error: true
+
+      - name: Start mock server
+        working-directory: api/mock-server
+        run: |
+          PORT=8787 corepack pnpm start &
+          echo $! > mock-server.pid
+          for i in {1..30}; do
+            if curl -sf http://localhost:8787/health > /dev/null; then
+              echo "Mock server is ready"
+              break
+            fi
+            if [ "$i" -eq 30 ]; then
+              echo "Mock server failed to start" >&2
+              exit 1
+            fi
+            sleep 1
+          done
+
+      - name: Run integration tests
+        working-directory: mobile/flutter_app
+        env:
+          MOCK_API_BASE_URL: http://localhost:8787
+        run: flutter test integration_test
+
+      - name: Stop mock server
+        if: always()
+        working-directory: api/mock-server
+        run: |
+          if [ -f mock-server.pid ]; then
+            kill $(cat mock-server.pid) || true
+            rm mock-server.pid
+          fi

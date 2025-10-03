@@ -47,10 +47,18 @@ void main() {
       vertexAiProjectId: 'proj',
       firebaseApiKey: 'key',
       firebaseProjectId: 'firebase',
+      firebaseAndroidAppId: '1:1234567890:android:test',
+      firebaseIosAppId: '1:1234567890:ios:test',
+      firebaseIosBundleId: 'com.example.test',
+      firebaseWebAppId: '1:1234567890:web:test',
+      firebaseMessagingSenderId: '1234567890',
       googleOAuthClientId: 'client',
       googleOAuthClientSecret: 'secret',
       mockApiBaseUrl: 'http://localhost:8787',
       serviceAuthToken: 'service-token',
+      firebaseStorageBucket: 'test-bucket',
+      firebaseWebAuthDomain: 'test.firebaseapp.com',
+      firebaseWebMeasurementId: 'G-TEST',
     );
 
     when(

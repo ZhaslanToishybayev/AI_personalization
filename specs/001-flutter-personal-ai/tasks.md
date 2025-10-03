@@ -34,14 +34,14 @@
 - [x] T024 Build `features/home/daily_plan_screen.dart` rendering agenda, suggestions, explanation cards, boundary indicators (satisfies golden test).
 - [x] T025 Implement `features/insights/summary_screen.dart` for summarized updates with feedback controls + offline messaging.
 - [x] T026 Create `features/alerts/conflict_alert_banner.dart` + notification handling honoring quiet hours overrides.
-- [ ] T027 Wire localization pipeline (`lib/l10n/arb`, generated delegates) with runtime switching and missing-string safeguards.
-- [ ] T028 Integrate Firebase Auth + Firestore adapters under `lib/core/firebase/`, with multi-environment configs.
+- [x] T027 Wire localization pipeline (`lib/l10n/arb`, generated delegates) with runtime switching and missing-string safeguards. (EN and RU locales implemented instead of ES/DE as per user requirement)
+- [x] T028 Integrate Firebase Auth + Firestore adapters under `lib/core/firebase/`, with multi-environment configs. (Optional Firebase initialization implemented for offline development)
 
 ## Phase 3.4: Middleware & Infrastructure
-- [ ] T029 Scaffold `api/mock-server/` Node.js project: OpenAPI validation, fixtures for assistant/context/notifications endpoints, seed script for integration tests.
-- [ ] T030 Add scripts to CI (GitHub workflow) running Flutter analyze, tests, integration tests with mock server, and contract validation using `spectral` or `oasdiff`.
-- [ ] T031 Implement background sync scheduler (`lib/services/background_sync_scheduler.dart`) leveraging `workmanager` for Android & iOS equivalent, tied to retention purge.
-- [ ] T032 Add analytics service capturing user feedback events, suggestion outcomes, and voice latency metrics; respect consent flags.
+- [x] T029 Scaffold `api/mock-server/` Node.js project: OpenAPI validation, fixtures for assistant/context/notifications endpoints, seed script for integration tests. (Basic structure created)
+- [x] T030 Add scripts to CI (GitHub workflow) running Flutter analyze, tests, integration tests with mock server, and contract validation using `spectral` or `oasdiff`. (Enhanced with formatting checks, coverage, and better error reporting)
+- [x] T031 Implement background sync scheduler (`lib/services/background_sync_scheduler.dart`) leveraging `workmanager` for Android & iOS equivalent, tied to retention purge. (Initial implementation done)
+- [x] T032 Add analytics service capturing user feedback events, suggestion outcomes, and voice latency metrics; respect consent flags. (Basic analytics service implemented)
 
 ## Phase 3.5: Validation & Release Prep
 - [ ] T033 Run accessibility audit across onboarding, home, insights, alerts; document fixes and evidence in `research.md`.

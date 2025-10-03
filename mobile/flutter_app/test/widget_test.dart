@@ -13,10 +13,18 @@ void main() {
     vertexAiProjectId: 'project-123',
     firebaseApiKey: 'test-key',
     firebaseProjectId: 'test-project',
+    firebaseAndroidAppId: '1:1234567890:android:test',
+    firebaseIosAppId: '1:1234567890:ios:test',
+    firebaseIosBundleId: 'com.example.test',
+    firebaseWebAppId: '1:1234567890:web:test',
+    firebaseMessagingSenderId: '1234567890',
     googleOAuthClientId: 'client-id',
     googleOAuthClientSecret: 'client-secret',
     mockApiBaseUrl: 'https://mock-api.example.com',
     serviceAuthToken: 'service-token',
+    firebaseStorageBucket: 'test-bucket',
+    firebaseWebAuthDomain: 'test.firebaseapp.com',
+    firebaseWebMeasurementId: 'G-TEST',
   );
 
   const plan = DailyPlanViewModel(

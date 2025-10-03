@@ -234,7 +234,7 @@ class ContextSyncService {
       final sorted = SplayTreeMap<String, Object?>((a, b) => a.compareTo(b));
       value.forEach((key, dynamic val) {
         if (val != null) {
-          sorted[key] = _normalizeValue(val);
+          sorted[key.toString()] = _normalizeValue(val);
         }
       });
       return sorted;

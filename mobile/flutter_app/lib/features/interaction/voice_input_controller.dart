@@ -23,7 +23,7 @@ class VoiceInputController extends StateNotifier<VoiceInputState> {
     AnalyticsService? analytics,
     DateTime Function()? clock,
   }) : _recognizer = recognizer,
-       _analytics = analytics ?? const AnalyticsService(),
+       _analytics = analytics ?? AnalyticsService(),
        _clock = clock ?? DateTime.now,
        super(const VoiceInputState());
 

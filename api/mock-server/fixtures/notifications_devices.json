@@ -1,0 +1,8 @@
+[
+  {
+    "device_id": "device-simulator-1",
+    "platform": "android",
+    "push_token": "demo-token",
+    "locale": "en-US"
+  }
+]

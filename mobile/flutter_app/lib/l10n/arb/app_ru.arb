@@ -1,0 +1,184 @@
+{
+  "@@locale": "ru",
+  "appTitle": "Персональный AI Ассистент",
+  "homeToday": "Сегодня",
+  "homeLoadingPlan": "Загружаю ваш план...",
+  "homeSampleGreeting": "Доброе утро, Кейси",
+  "homeSampleSummary": "Утренний фокус-блок в 09:30. Два приоритетных дела готовы.",
+  "homeSampleAgendaTitle": "Повестка",
+  "homeSamplePlanTitle": "План на день",
+  "homeSampleSuggestionsTitle": "Предложения ассистента",
+  "homeSampleFocusTitle": "Фокус-задачи",
+  "homeSampleSuggestionHoldSeat": "Забронировать место на рейс в Сиэтл",
+  "homeSampleSuggestionHoldSeatDetail": "Рейс UA 455 всё ещё не подтверждён. Забронировать вылет в 18:15?",
+  "homeSampleSuggestionHoldSeatAction": "Забронировать место",
+  "homeSampleSuggestionPrep": "Подготовить тезисы",
+  "homeSampleSuggestionPrepDetail": "Просмотрите метрики оттока перед созвоном с руководством.",
+  "homeSampleSuggestionPrepAction": "Открыть сводку",
+  "homeSampleFocusApproval": "Утвердить сводку по проверке безопасности",
+  "homeSampleFocusApprovalStatus": "Срок сегодня · Назначено вам",
+  "homeSampleFocusDraft": "Составить итоги OKR за Q3",
+  "homeSampleFocusDraftStatus": "В процессе",
+  "conflictQuietHoursTitle": "Активны тихие часы",
+  "conflictQuietHoursDescription": "Отправка сейчас нарушит тихие часы Кейси.",
+  "conflictScheduleStatus": "Запланировано на {time}",
+  "@conflictScheduleStatus": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "conflictOverrideStatus": "Переопределение отправлено · пользователь уведомлён",
+  "conflictOverrideFailedStatus": "Переопределение не удалось · {error}",
+  "@conflictOverrideFailedStatus": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "conflictScheduleAfterQuietHours": "Запланировать после тихих часов",
+  "conflictScheduleLater": "Запланировать позже",
+  "conflictSendAnyway": "Всё равно отправить",
+  "conflictDismiss": "Отклонить",
+  "conflictContextNote": "Тихие часы заканчиваются в {time} по часовому поясу {timeZone}.",
+  "@conflictContextNote": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      },
+      "timeZone": {
+        "type": "String"
+      }
+    }
+  },
+  "commonNext": "Далее",
+  "commonFinish": "Завершить",
+  "commonCancel": "Отмена",
+  "commonNone": "Нет",
+  "onboardingWelcomeTitle": "Добро пожаловать в Персональный AI Ассистент",
+  "onboardingWelcomeSubtitle": "Мы персонализируем вашу ежедневную поддержку, соберём только те данные, которые вы одобрите, и позволим вам изменить настройки в любое время.",
+  "onboardingGetStarted": "Начать",
+  "onboardingLocaleTitle": "Выберите предпочитаемый язык",
+  "onboardingLocaleSubtitle": "Локализация помогает ассистенту адаптировать формулировки и сводки. Вы можете изменить язык в любое время в настройках.",
+  "onboardingChooseLanguage": "Выбрать язык",
+  "onboardingLanguageSet": "Язык установлен: {language}",
+  "@onboardingLanguageSet": {
+    "placeholders": {
+      "language": {
+        "type": "String"
+      }
+    }
+  },
+  "onboardingChannelsTitle": "Выберите, как вы хотите получать обновления",
+  "onboardingCriticalAlertsTitle": "Разрешить критичные уведомления",
+  "onboardingCriticalAlertsSubtitle": "Для срочных конфликтов и напоминаний с ограничением по времени",
+  "onboardingQuietHoursTitle": "Установить тихие часы",
+  "onboardingQuietHoursSubtitle": "В тихие часы ассистент приостановит некритичные уведомления.",
+  "onboardingQuietStartLabel": "Начало (ЧЧ:ММ)",
+  "onboardingQuietEndLabel": "Конец (ЧЧ:ММ)",
+  "onboardingAddBoundary": "Добавить запретную тему",
+  "onboardingBoundaryHint": "например, финансы, личное здоровье",
+  "onboardingSaveBoundary": "Сохранить границу",
+  "onboardingConsentsTitle": "Просмотрите настройки конфиденциальности",
+  "onboardingAcceptTos": "Я согласен с Условиями использования",
+  "onboardingTelemetryTitle": "Я разрешаю анонимную телеметрию",
+  "onboardingTelemetrySubtitle": "Используется для улучшения производительности и надёжности ассистента",
+  "onboardingViewExport": "Посмотреть варианты экспорта данных",
+  "onboardingExportDetails": "Экспортировать данные в формате JSON или ICS.\nЗапросы на удаление обрабатываются в течение 72 часов.",
+  "onboardingSummaryTitle": "Всё готово!",
+  "onboardingOfflineBanner": "Офлайн-режим готов — последний план кэширован",
+  "onboardingCriticalAllowed": "Разрешено",
+  "onboardingCriticalMuted": "Отключено",
+  "onboardingTelemetryEnabled": "Включено",
+  "onboardingTelemetryDisabled": "Отключено",
+  "onboardingSummaryLocale": "Язык: {locale}",
+  "@onboardingSummaryLocale": {
+    "placeholders": {
+      "locale": {
+        "type": "String"
+      }
+    }
+  },
+  "onboardingSummaryChannels": "Каналы: {channels}",
+  "@onboardingSummaryChannels": {
+    "placeholders": {
+      "channels": {
+        "type": "String"
+      }
+    }
+  },
+  "onboardingSummaryCritical": "Критичные уведомления: {status}",
+  "@onboardingSummaryCritical": {
+    "placeholders": {
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+  "onboardingSummaryQuietHours": "Тихие часы: {start} — {end}",
+  "@onboardingSummaryQuietHours": {
+    "placeholders": {
+      "start": {
+        "type": "String"
+      },
+      "end": {
+        "type": "String"
+      }
+    }
+  },
+  "onboardingSummaryTelemetry": "Телеметрия: {status}",
+  "@onboardingSummaryTelemetry": {
+    "placeholders": {
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+  "onboardingSummaryBoundaries": "Границы: {boundaries}",
+  "@onboardingSummaryBoundaries": {
+    "placeholders": {
+      "boundaries": {
+        "type": "String"
+      }
+    }
+  },
+  "onboardingLocaleEnglishLabel": "English (US)",
+  "onboardingLocaleEnglishName": "Английский",
+  "onboardingLocaleSpanishLabel": "Español (LatAm)",
+  "onboardingLocaleSpanishName": "Испанский",
+  "onboardingLocaleGermanLabel": "Deutsch (DE)",
+  "onboardingLocaleGermanName": "Немецкий",
+  "onboardingLocaleRussianLabel": "Русский (RU)",
+  "onboardingLocaleRussianName": "Русский",
+  "onboardingChannelCalendar": "Включить синхронизацию календаря",
+  "onboardingChannelGmail": "Включить сводки Gmail",
+  "onboardingChannelPush": "Push-уведомления",
+  "onboardingStepWelcome": "Приветствие",
+  "onboardingStepLanguage": "Язык",
+  "onboardingStepChannels": "Каналы уведомлений",
+  "onboardingStepQuietHours": "Тихие часы",
+  "onboardingStepConsents": "Согласия на конфиденциальность",
+  "onboardingStepSummary": "Сводка",
+  "summaryFollowUpsTitle": "Дела на сегодня",
+  "summarySignalsTitle": "Отслеживаемые сигналы",
+  "summaryOfflineBanner": "Офлайн-сводка кэширована",
+  "summaryConfidenceLabel": "Уверенность: {value}",
+  "@summaryConfidenceLabel": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "summarySourcesCount": "Источники ({count})",
+  "@summarySourcesCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "summaryViewSources": "Просмотреть источники"
+}

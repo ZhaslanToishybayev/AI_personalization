@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/core/analytics/analytics_service.dart';
 import 'package:flutter_app/core/config/app_config.dart';
 import 'package:flutter_app/data/assistant_api_client.dart';
 import 'package:flutter_app/data/assistant_api_client_provider.dart';
@@ -58,11 +59,13 @@ final conflictAlertControllerProvider = StateNotifierProvider.autoDispose
       final notificationService = ref.watch(notificationServiceProvider);
       final apiClient = ref.watch(assistantApiClientProvider);
       final config = ref.watch(appConfigProvider);
+      final analytics = ref.watch(analyticsServiceProvider);
       return ConflictAlertController(
         scenario: scenario,
         notificationService: notificationService,
         apiClient: apiClient,
         serviceToken: config.serviceAuthToken,
+        analytics: analytics,
       );
     });
 
@@ -72,10 +75,13 @@ class ConflictAlertController extends StateNotifier<ConflictAlertViewModel?> {
     required NotificationService notificationService,
     required AssistantApiClient apiClient,
     required this.serviceToken,
+    AnalyticsService? analytics,
     DateTime Function()? clock,
   }) : _notificationService = notificationService,
        _apiClient = apiClient,
+       _analytics = analytics ?? AnalyticsService(),
        _clock = clock ?? DateTime.now,
+       _presentedAt = (clock ?? DateTime.now)(),
        super(null) {
     state = _buildViewModel();
   }
@@ -84,7 +90,10 @@ class ConflictAlertController extends StateNotifier<ConflictAlertViewModel?> {
   final NotificationService _notificationService;
   final AssistantApiClient _apiClient;
   final DateTime Function() _clock;
+  final AnalyticsService _analytics;
   final String serviceToken;
+  final DateTime _presentedAt;
+  bool _deliveryLogged = false;
 
   bool get _hasQuietHours => scenario.quietHours != null;
 
@@ -131,6 +140,8 @@ class ConflictAlertController extends StateNotifier<ConflictAlertViewModel?> {
       alternatives: const [],
       onDismissed: dismiss,
     );
+    _logDeliveryIfNeeded(quietHoursConflict: true);
+    _recordFeedback(SuggestionFeedbackAction.snoozed);
   }
 
   Future<void> overrideQuietHours() async {
@@ -150,6 +161,8 @@ class ConflictAlertController extends StateNotifier<ConflictAlertViewModel?> {
         alternatives: const [],
         onDismissed: dismiss,
       );
+      _logDeliveryIfNeeded(quietHoursConflict: false);
+      _recordFeedback(SuggestionFeedbackAction.boundaryOverride);
     } catch (error) {
       final message = scenario.overrideFailureBuilder(error.toString());
       state = state?.copyWith(
@@ -161,6 +174,41 @@ class ConflictAlertController extends StateNotifier<ConflictAlertViewModel?> {
   }
 
   void dismiss() {
+    _logDeliveryIfNeeded(quietHoursConflict: false);
+    _recordFeedback(SuggestionFeedbackAction.declined);
     state = null;
+  }
+
+  void _logDeliveryIfNeeded({required bool quietHoursConflict}) {
+    if (_deliveryLogged) {
+      return;
+    }
+    final suggestionId = scenario.suggestionId;
+    if (suggestionId == null) {
+      return;
+    }
+    _analytics.recordSuggestionDelivery(
+      suggestionId: suggestionId,
+      suggestionType: 'conflict_alert',
+      quietHoursConflict: quietHoursConflict,
+    );
+    _deliveryLogged = true;
+  }
+
+  void _recordFeedback(SuggestionFeedbackAction action) {
+    final suggestionId = scenario.suggestionId;
+    if (suggestionId == null) {
+      return;
+    }
+    final latency = _clock().difference(_presentedAt);
+    final boundaryOverride =
+        action == SuggestionFeedbackAction.boundaryOverride;
+    _analytics.recordSuggestionFeedback(
+      suggestionId: suggestionId,
+      action: action,
+      responseLatency: latency,
+      boundaryOverride: boundaryOverride,
+      suggestionType: 'conflict_alert',
+    );
   }
 }

@@ -37,10 +37,11 @@
 - **Follow-ups**: Implement compromise detection hook; document DB schema migration strategy; add automated purge test to CI.
 
 ## R6. Localization Scope
-- **Decision**: Launch locales EN-US, ES-419, DE-DE with Flutter `intl` tooling and Lokalise pipeline for translation memory. Strings stored in `lib/l10n/arb/`; weekly translation syncs during beta. RTL and additional locales evaluated after telemetry review.  
-- **Rationale**: Covers top target markets while maintaining manageable translation cadence; Lokalise integrates with CI for missing string detection.  
-- **Owner / Due**: Localization PM (E. Vogel) — Pipeline configured and first string batch translated by 2025-10-06.  
-- **Follow-ups**: Define localization QA checklist; coordinate with marketing for tone review; instrument locale-based analytics.
+- **Decision**: Launch locales EN-US and RU-RU with Flutter `intl` tooling. Strings stored in `lib/l10n/arb/` with app_en.arb and app_ru.arb. Translation memory can be extended later. RTL and additional locales evaluated after telemetry review.  
+- **Rationale**: Focus on English and Russian markets as primary target audiences per project requirements. Flutter's intl system provides runtime switching and missing-string safeguards.  
+- **Owner / Due**: Development Team — Implemented during MVP phase (2025-10-03).  
+- **Status**: ✅ COMPLETED - Russian localization added with full translation of UI strings.
+- **Follow-ups**: Define localization QA checklist; instrument locale-based analytics; consider adding more locales based on user demand.
 
 ## R7. Liquid Glass Visual System
 - **Decision**: Finalize Liquid Glass token catalog: blur `{8, 12, 16, 24}` px, elevation `{3dp, 8dp, 16dp}`, gradient palettes (Dawn, Day, Dusk), and reduced-motion fallback using solid color overlays. Establish design review sign-off for onboarding, home, insights, and alert surfaces. Figma component library synced with Flutter theming to support golden tests.  

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/theme/app_design_tokens.dart';
 import 'package:flutter_app/theme/liquid_glass_tokens.dart';
 import 'package:flutter_app/theme/widgets/glass_panel.dart';
+import 'package:flutter_app/theme/widgets/app_button.dart';
 
 class ConflictAlertBanner extends StatelessWidget {
   const ConflictAlertBanner({required this.viewModel, super.key});
@@ -13,15 +15,28 @@ class ConflictAlertBanner extends StatelessWidget {
 
     return GlassPanel(
       tone: viewModel.tone,
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+      padding: AppSpacing.cardPadding,
+      enhancedContrast: true,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Icon(Icons.warning_amber_rounded, size: 20),
-              const SizedBox(width: 12),
+              Container(
+                width: 40,
+                height: 40,
+                decoration: BoxDecoration(
+                  color: AppColors.warning.withOpacity(0.1),
+                  borderRadius: BorderRadius.circular(AppRadius.md),
+                ),
+                child: Icon(
+                  Icons.warning_amber_rounded,
+                  size: AppIconSizes.md,
+                  color: AppColors.warning,
+                ),
+              ),
+              SizedBox(width: AppSpacing.md),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -29,23 +44,45 @@ class ConflictAlertBanner extends StatelessWidget {
                     Text(
                       viewModel.title,
                       style: textTheme.titleMedium?.copyWith(
-                        fontWeight: FontWeight.w700,
+                        fontWeight: AppFontWeights.bold,
+                        color: AppColors.textPrimary,
                       ),
                     ),
-                    const SizedBox(height: 4),
-                    Text(viewModel.description, style: textTheme.bodyMedium),
+                    SizedBox(height: AppSpacing.xs),
+                    Text(
+                      viewModel.description,
+                      style: textTheme.bodyMedium?.copyWith(
+                        color: AppColors.textSecondary,
+                      ),
+                    ),
                     if (viewModel.statusLabel != null) ...[
-                      const SizedBox(height: 6),
-                      Text(
-                        viewModel.statusLabel!,
-                        style: textTheme.labelMedium?.copyWith(
-                          fontWeight: FontWeight.w600,
+                      SizedBox(height: AppSpacing.sm),
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: AppSpacing.sm,
+                          vertical: AppSpacing.xs,
+                        ),
+                        decoration: BoxDecoration(
+                          color: AppColors.info.withOpacity(0.1),
+                          borderRadius: BorderRadius.circular(AppRadius.sm),
+                        ),
+                        child: Text(
+                          viewModel.statusLabel!,
+                          style: textTheme.labelSmall?.copyWith(
+                            fontWeight: AppFontWeights.semiBold,
+                            color: AppColors.info,
+                          ),
                         ),
                       ),
                     ],
                     if (viewModel.contextNote != null) ...[
-                      const SizedBox(height: 8),
-                      Text(viewModel.contextNote!, style: textTheme.bodySmall),
+                      SizedBox(height: AppSpacing.sm),
+                      Text(
+                        viewModel.contextNote!,
+                        style: textTheme.bodySmall?.copyWith(
+                          color: AppColors.textTertiary,
+                        ),
+                      ),
                     ],
                   ],
                 ),
@@ -53,27 +90,31 @@ class ConflictAlertBanner extends StatelessWidget {
             ],
           ),
           if (viewModel.alternatives.isNotEmpty) ...[
-            const SizedBox(height: 12),
+            SizedBox(height: AppSpacing.md),
             Wrap(
-              spacing: 12,
-              runSpacing: 8,
+              spacing: AppSpacing.sm,
+              runSpacing: AppSpacing.sm,
               children: viewModel.alternatives
                   .map(
-                    (alt) => OutlinedButton.icon(
+                    (alt) => AppButton(
                       onPressed: alt.onSelected,
-                      icon: Icon(alt.icon, size: 16),
-                      label: Text(alt.label),
+                      variant: AppButtonVariant.outline,
+                      size: AppButtonSize.small,
+                      icon: alt.icon,
+                      child: Text(alt.label),
                     ),
                   )
                   .toList(),
             ),
           ],
           if (viewModel.onDismissed != null) ...[
-            const SizedBox(height: 12),
+            SizedBox(height: AppSpacing.md),
             Align(
               alignment: Alignment.centerRight,
-              child: TextButton(
+              child: AppButton(
                 onPressed: viewModel.onDismissed,
+                variant: AppButtonVariant.text,
+                size: AppButtonSize.small,
                 child: Text(viewModel.dismissLabel),
               ),
             ),

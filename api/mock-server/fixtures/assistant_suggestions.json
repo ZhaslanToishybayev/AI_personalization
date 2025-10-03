@@ -1,0 +1,35 @@
+[
+  {
+    "id": "suggestion-1",
+    "suggestion_type": "daily_plan",
+    "message": "Lock 90 minutes for prep before the leadership sync.",
+    "status": "pending",
+    "explanation": {
+      "rationale": "Leadership sync agenda updated with new topics."
+    },
+    "confidence_score": 0.82,
+    "actions": [
+      {
+        "label": "Schedule focus block",
+        "action_type": "schedule_block"
+      }
+    ]
+  },
+  {
+    "id": "suggestion-2",
+    "suggestion_type": "alert",
+    "message": "Travel reminder: leave by 18:15 for the airport.",
+    "status": "pending",
+    "explanation": {
+      "rationale": "Commute time trending longer due to construction along I-5."
+    },
+    "confidence_score": 0.74,
+    "actions": [
+      {
+        "label": "View itinerary",
+        "action_type": "open_link",
+        "href": "https://travel.example.com/itinerary"
+      }
+    ]
+  }
+]
