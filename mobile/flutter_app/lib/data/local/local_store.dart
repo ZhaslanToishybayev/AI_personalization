@@ -89,7 +89,7 @@ class NotificationQueueEntries extends Table {
 )
 class LocalStore extends _$LocalStore {
   LocalStore() : super(_openConnection());
-
+  LocalStore.withConnection(DatabaseConnection connection) : super(connection);
   LocalStore.forTesting(super.executor);
 
   @override

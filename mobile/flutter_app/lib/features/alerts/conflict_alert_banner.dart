@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/theme/app_design_tokens.dart';
-import 'package:flutter_app/theme/liquid_glass_tokens.dart';
-import 'package:flutter_app/theme/widgets/glass_panel.dart';
+import 'package:flutter_app/theme/simple_material_theme.dart';
 import 'package:flutter_app/theme/widgets/app_button.dart';
 
 class ConflictAlertBanner extends StatelessWidget {
@@ -13,11 +12,11 @@ class ConflictAlertBanner extends StatelessWidget {
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
 
-    return GlassPanel(
-      tone: viewModel.tone,
-      padding: AppSpacing.cardPadding,
-      enhancedContrast: true,
-      child: Column(
+    return Card(
+      elevation: AppElevations.lg,
+      child: Padding(
+        padding: AppSpacing.cardPadding,
+        child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
@@ -120,6 +119,7 @@ class ConflictAlertBanner extends StatelessWidget {
             ),
           ],
         ],
+        ),
       ),
     );
   }
@@ -133,7 +133,7 @@ class ConflictAlertViewModel {
     this.statusLabel,
     this.alternatives = const [],
     this.onDismissed,
-    this.tone = GlassTone.dusk,
+    this.tone = 'dusk',
     this.dismissLabel = 'Dismiss',
   });
 
@@ -143,7 +143,7 @@ class ConflictAlertViewModel {
   final String? statusLabel;
   final List<ConflictAlternative> alternatives;
   final VoidCallback? onDismissed;
-  final GlassTone tone;
+  final String tone;
   final String dismissLabel;
 
   ConflictAlertViewModel copyWith({
@@ -153,7 +153,7 @@ class ConflictAlertViewModel {
     String? statusLabel,
     List<ConflictAlternative>? alternatives,
     VoidCallback? onDismissed,
-    GlassTone? tone,
+    String? tone,
     String? dismissLabel,
   }) {
     return ConflictAlertViewModel(

@@ -1,10 +1,12 @@
 {
-  "session_id": "sess-bootstrap",
-  "expires_at": "2025-09-29T09:32:59.518Z",
+  "session_id": "sess-1759927739415",
+  "expires_at": "2025-10-08T13:18:59.414Z",
   "warmup_summary": "Welcome back! You have three focus blocks this morning and two pending follow-ups.",
   "personalization_state": {
     "daily_focus_theme": "Intentional planning",
     "upcoming_conflicts": 1,
-    "quiet_hours_active": false
+    "quiet_hours_active": false,
+    "last_channel": "text",
+    "locale": "ru"
   }
 }

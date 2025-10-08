@@ -11,13 +11,13 @@ _$QueuedNotificationImpl _$$QueuedNotificationImplFromJson(
 ) => _$QueuedNotificationImpl(
   id: json['id'] as String,
   userId: json['userId'] as String,
-  suggestionId: json['suggestionId'] as String?,
   channel: json['channel'] as String,
+  scheduledFor: DateTime.parse(json['scheduledFor'] as String),
+  suggestionId: json['suggestionId'] as String?,
   priority:
       $enumDecodeNullable(_$NotificationPriorityEnumMap, json['priority']) ??
       NotificationPriority.normal,
   quietHoursOverride: json['quietHoursOverride'] as bool? ?? false,
-  scheduledFor: DateTime.parse(json['scheduledFor'] as String),
   deliveredAt: json['deliveredAt'] == null
       ? null
       : DateTime.parse(json['deliveredAt'] as String),
@@ -29,11 +29,11 @@ Map<String, dynamic> _$$QueuedNotificationImplToJson(
 ) => <String, dynamic>{
   'id': instance.id,
   'userId': instance.userId,
-  'suggestionId': instance.suggestionId,
   'channel': instance.channel,
+  'scheduledFor': instance.scheduledFor.toIso8601String(),
+  'suggestionId': instance.suggestionId,
   'priority': _$NotificationPriorityEnumMap[instance.priority]!,
   'quietHoursOverride': instance.quietHoursOverride,
-  'scheduledFor': instance.scheduledFor.toIso8601String(),
   'deliveredAt': instance.deliveredAt?.toIso8601String(),
   'deliveryAttempts': instance.deliveryAttempts,
 };

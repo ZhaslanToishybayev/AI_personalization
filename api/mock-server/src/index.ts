@@ -19,26 +19,16 @@ async function bootstrap() {
   const apiDoc = await loadOpenApiDocument();
   await SwaggerParser.validate(apiDoc);
 
-  const validatorExport: any = (OpenApiValidator as any)?.default ?? (OpenApiValidator as any);
-  if (typeof validatorExport === 'function') {
-    await new validatorExport({
+  const middlewareFactory = OpenApiValidator.middleware;
+  if (typeof middlewareFactory === 'function') {
+    const middleware = await middlewareFactory({
       apiSpec: apiDoc as any,
       validateRequests: true,
       validateResponses: true,
-    }).install(app);
+    });
+    app.use(middleware);
   } else {
-    const namespace: any = typeof validatorExport === 'object' ? validatorExport : OpenApiValidator;
-    if (typeof namespace?.middleware === 'function') {
-      app.use(
-        await namespace.middleware({
-          apiSpec: apiDoc as any,
-          validateRequests: true,
-          validateResponses: true,
-        }),
-      );
-    } else {
-      throw new Error('Failed to initialize express-openapi-validator: unknown export shape');
-    }
+    console.error('Failed to initialize express-openapi-validator middleware');
   }
 
   const store = new MockStore();

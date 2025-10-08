@@ -198,6 +198,12 @@ export function createDefaultSuggestions(): Suggestion[] {
       message: 'Lock 90 minutes for prep before the leadership sync.',
       status: 'pending',
       explanation: {
+        sources: [
+          {
+            signal_id: 'signal-1',
+            summary: 'Calendar event: Leadership sync at 10:00 AM',
+          }
+        ],
         rationale: 'Leadership sync agenda updated with new topics.',
       },
       confidence_score: 0.82,
@@ -214,6 +220,12 @@ export function createDefaultSuggestions(): Suggestion[] {
       message: 'Travel reminder: leave by 18:15 for the airport.',
       status: 'pending',
       explanation: {
+        sources: [
+          {
+            signal_id: 'signal-2',
+            summary: 'Traffic data: Construction on I-5 causing delays',
+          }
+        ],
         rationale: 'Commute time trending longer due to construction along I-5.',
       },
       confidence_score: 0.74,

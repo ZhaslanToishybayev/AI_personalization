@@ -47,5 +47,5 @@ const _$SignalPriorityEnumMap = {
   SignalPriority.low: 'low',
   SignalPriority.normal: 'normal',
   SignalPriority.high: 'high',
-  SignalPriority.critical: 'critical',
+  SignalPriority.urgent: 'urgent',
 };

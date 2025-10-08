@@ -5,7 +5,7 @@ part 'context_signal.g.dart';
 
 enum ContextSource { calendar, email, tasks, manual }
 
-enum SignalPriority { low, normal, high, critical }
+enum SignalPriority { low, normal, high, urgent, critical }
 
 @freezed
 class ContextSignal with _$ContextSignal {
@@ -34,9 +34,10 @@ class ContextSignal with _$ContextSignal {
     final freshnessMinutes = now.difference(ingestedAt).inMinutes;
     final priorityWeight = switch (priority) {
       SignalPriority.critical => 4,
-      SignalPriority.high => 3,
-      SignalPriority.normal => 2,
-      SignalPriority.low => 1,
+      SignalPriority.urgent => 3,
+      SignalPriority.high => 2,
+      SignalPriority.normal => 1,
+      SignalPriority.low => 0,
     };
     final freshnessModifier = (freshnessMinutes < 60)
         ? 1.5

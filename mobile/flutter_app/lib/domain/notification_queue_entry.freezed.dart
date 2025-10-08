@@ -23,11 +23,11 @@ QueuedNotification _$QueuedNotificationFromJson(Map<String, dynamic> json) {
 mixin _$QueuedNotification {
   String get id => throw _privateConstructorUsedError;
   String get userId => throw _privateConstructorUsedError;
-  String? get suggestionId => throw _privateConstructorUsedError;
   String get channel => throw _privateConstructorUsedError;
+  DateTime get scheduledFor => throw _privateConstructorUsedError;
+  String? get suggestionId => throw _privateConstructorUsedError;
   NotificationPriority get priority => throw _privateConstructorUsedError;
   bool get quietHoursOverride => throw _privateConstructorUsedError;
-  DateTime get scheduledFor => throw _privateConstructorUsedError;
   DateTime? get deliveredAt => throw _privateConstructorUsedError;
   int get deliveryAttempts => throw _privateConstructorUsedError;
 
@@ -51,11 +51,11 @@ abstract class $QueuedNotificationCopyWith<$Res> {
   $Res call({
     String id,
     String userId,
-    String? suggestionId,
     String channel,
+    DateTime scheduledFor,
+    String? suggestionId,
     NotificationPriority priority,
     bool quietHoursOverride,
-    DateTime scheduledFor,
     DateTime? deliveredAt,
     int deliveryAttempts,
   });
@@ -78,11 +78,11 @@ class _$QueuedNotificationCopyWithImpl<$Res, $Val extends QueuedNotification>
   $Res call({
     Object? id = null,
     Object? userId = null,
-    Object? suggestionId = freezed,
     Object? channel = null,
+    Object? scheduledFor = null,
+    Object? suggestionId = freezed,
     Object? priority = null,
     Object? quietHoursOverride = null,
-    Object? scheduledFor = null,
     Object? deliveredAt = freezed,
     Object? deliveryAttempts = null,
   }) {
@@ -96,14 +96,18 @@ class _$QueuedNotificationCopyWithImpl<$Res, $Val extends QueuedNotification>
                 ? _value.userId
                 : userId // ignore: cast_nullable_to_non_nullable
                       as String,
-            suggestionId: freezed == suggestionId
-                ? _value.suggestionId
-                : suggestionId // ignore: cast_nullable_to_non_nullable
-                      as String?,
             channel: null == channel
                 ? _value.channel
                 : channel // ignore: cast_nullable_to_non_nullable
                       as String,
+            scheduledFor: null == scheduledFor
+                ? _value.scheduledFor
+                : scheduledFor // ignore: cast_nullable_to_non_nullable
+                      as DateTime,
+            suggestionId: freezed == suggestionId
+                ? _value.suggestionId
+                : suggestionId // ignore: cast_nullable_to_non_nullable
+                      as String?,
             priority: null == priority
                 ? _value.priority
                 : priority // ignore: cast_nullable_to_non_nullable
@@ -112,10 +116,6 @@ class _$QueuedNotificationCopyWithImpl<$Res, $Val extends QueuedNotification>
                 ? _value.quietHoursOverride
                 : quietHoursOverride // ignore: cast_nullable_to_non_nullable
                       as bool,
-            scheduledFor: null == scheduledFor
-                ? _value.scheduledFor
-                : scheduledFor // ignore: cast_nullable_to_non_nullable
-                      as DateTime,
             deliveredAt: freezed == deliveredAt
                 ? _value.deliveredAt
                 : deliveredAt // ignore: cast_nullable_to_non_nullable
@@ -142,11 +142,11 @@ abstract class _$$QueuedNotificationImplCopyWith<$Res>
   $Res call({
     String id,
     String userId,
-    String? suggestionId,
     String channel,
+    DateTime scheduledFor,
+    String? suggestionId,
     NotificationPriority priority,
     bool quietHoursOverride,
-    DateTime scheduledFor,
     DateTime? deliveredAt,
     int deliveryAttempts,
   });
@@ -168,11 +168,11 @@ class __$$QueuedNotificationImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? userId = null,
-    Object? suggestionId = freezed,
     Object? channel = null,
+    Object? scheduledFor = null,
+    Object? suggestionId = freezed,
     Object? priority = null,
     Object? quietHoursOverride = null,
-    Object? scheduledFor = null,
     Object? deliveredAt = freezed,
     Object? deliveryAttempts = null,
   }) {
@@ -186,14 +186,18 @@ class __$$QueuedNotificationImplCopyWithImpl<$Res>
             ? _value.userId
             : userId // ignore: cast_nullable_to_non_nullable
                   as String,
-        suggestionId: freezed == suggestionId
-            ? _value.suggestionId
-            : suggestionId // ignore: cast_nullable_to_non_nullable
-                  as String?,
         channel: null == channel
             ? _value.channel
             : channel // ignore: cast_nullable_to_non_nullable
                   as String,
+        scheduledFor: null == scheduledFor
+            ? _value.scheduledFor
+            : scheduledFor // ignore: cast_nullable_to_non_nullable
+                  as DateTime,
+        suggestionId: freezed == suggestionId
+            ? _value.suggestionId
+            : suggestionId // ignore: cast_nullable_to_non_nullable
+                  as String?,
         priority: null == priority
             ? _value.priority
             : priority // ignore: cast_nullable_to_non_nullable
@@ -202,10 +206,6 @@ class __$$QueuedNotificationImplCopyWithImpl<$Res>
             ? _value.quietHoursOverride
             : quietHoursOverride // ignore: cast_nullable_to_non_nullable
                   as bool,
-        scheduledFor: null == scheduledFor
-            ? _value.scheduledFor
-            : scheduledFor // ignore: cast_nullable_to_non_nullable
-                  as DateTime,
         deliveredAt: freezed == deliveredAt
             ? _value.deliveredAt
             : deliveredAt // ignore: cast_nullable_to_non_nullable
@@ -225,11 +225,11 @@ class _$QueuedNotificationImpl implements _QueuedNotification {
   const _$QueuedNotificationImpl({
     required this.id,
     required this.userId,
-    this.suggestionId,
     required this.channel,
+    required this.scheduledFor,
+    this.suggestionId,
     this.priority = NotificationPriority.normal,
     this.quietHoursOverride = false,
-    required this.scheduledFor,
     this.deliveredAt,
     this.deliveryAttempts = 0,
   });
@@ -242,17 +242,17 @@ class _$QueuedNotificationImpl implements _QueuedNotification {
   @override
   final String userId;
   @override
-  final String? suggestionId;
-  @override
   final String channel;
+  @override
+  final DateTime scheduledFor;
+  @override
+  final String? suggestionId;
   @override
   @JsonKey()
   final NotificationPriority priority;
   @override
   @JsonKey()
   final bool quietHoursOverride;
-  @override
-  final DateTime scheduledFor;
   @override
   final DateTime? deliveredAt;
   @override
@@ -261,7 +261,7 @@ class _$QueuedNotificationImpl implements _QueuedNotification {
 
   @override
   String toString() {
-    return 'QueuedNotification(id: $id, userId: $userId, suggestionId: $suggestionId, channel: $channel, priority: $priority, quietHoursOverride: $quietHoursOverride, scheduledFor: $scheduledFor, deliveredAt: $deliveredAt, deliveryAttempts: $deliveryAttempts)';
+    return 'QueuedNotification(id: $id, userId: $userId, channel: $channel, scheduledFor: $scheduledFor, suggestionId: $suggestionId, priority: $priority, quietHoursOverride: $quietHoursOverride, deliveredAt: $deliveredAt, deliveryAttempts: $deliveryAttempts)';
   }
 
   @override
@@ -271,15 +271,15 @@ class _$QueuedNotificationImpl implements _QueuedNotification {
             other is _$QueuedNotificationImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.channel, channel) || other.channel == channel) &&
+            (identical(other.scheduledFor, scheduledFor) ||
+                other.scheduledFor == scheduledFor) &&
             (identical(other.suggestionId, suggestionId) ||
                 other.suggestionId == suggestionId) &&
-            (identical(other.channel, channel) || other.channel == channel) &&
             (identical(other.priority, priority) ||
                 other.priority == priority) &&
             (identical(other.quietHoursOverride, quietHoursOverride) ||
                 other.quietHoursOverride == quietHoursOverride) &&
-            (identical(other.scheduledFor, scheduledFor) ||
-                other.scheduledFor == scheduledFor) &&
             (identical(other.deliveredAt, deliveredAt) ||
                 other.deliveredAt == deliveredAt) &&
             (identical(other.deliveryAttempts, deliveryAttempts) ||
@@ -292,11 +292,11 @@ class _$QueuedNotificationImpl implements _QueuedNotification {
     runtimeType,
     id,
     userId,
-    suggestionId,
     channel,
+    scheduledFor,
+    suggestionId,
     priority,
     quietHoursOverride,
-    scheduledFor,
     deliveredAt,
     deliveryAttempts,
   );
@@ -322,11 +322,11 @@ abstract class _QueuedNotification implements QueuedNotification {
   const factory _QueuedNotification({
     required final String id,
     required final String userId,
-    final String? suggestionId,
     required final String channel,
+    required final DateTime scheduledFor,
+    final String? suggestionId,
     final NotificationPriority priority,
     final bool quietHoursOverride,
-    required final DateTime scheduledFor,
     final DateTime? deliveredAt,
     final int deliveryAttempts,
   }) = _$QueuedNotificationImpl;
@@ -339,15 +339,15 @@ abstract class _QueuedNotification implements QueuedNotification {
   @override
   String get userId;
   @override
-  String? get suggestionId;
-  @override
   String get channel;
+  @override
+  DateTime get scheduledFor;
+  @override
+  String? get suggestionId;
   @override
   NotificationPriority get priority;
   @override
   bool get quietHoursOverride;
-  @override
-  DateTime get scheduledFor;
   @override
   DateTime? get deliveredAt;
   @override

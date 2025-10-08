@@ -106,7 +106,7 @@ class ConflictAlertController extends StateNotifier<ConflictAlertViewModel?> {
       description: scenario.description,
       contextNote: scenario.contextNote,
       statusLabel: status,
-      tone: scenario.tone,
+      tone: scenario.tone.name,
       alternatives: [
         ConflictAlternative(
           label: primaryLabel,

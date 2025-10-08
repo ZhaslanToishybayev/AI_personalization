@@ -1,7 +1,9 @@
 import 'dart:convert';
 
+import 'package:flutter_app/core/config/app_config.dart';
 import 'package:flutter_app/domain/assistive_suggestion.dart';
 import 'package:flutter_app/domain/interaction_session.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
 
 class AssistantApiClient {
@@ -301,3 +303,10 @@ class SuggestionsResponse {
 
   final List<AssistiveSuggestion> suggestions;
 }
+
+/// Provider для AssistantApiClient
+final assistantApiClientProvider = Provider<AssistantApiClient>((ref) {
+  final config = ref.watch(appConfigProvider);
+  
+  return AssistantApiClient(baseUrl: config.mockApiBaseUrl);
+});

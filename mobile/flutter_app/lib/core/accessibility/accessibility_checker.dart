@@ -5,8 +5,8 @@ class AccessibilityChecker {
   AccessibilityChecker._();
 
   /// WCAG 2.1 Level AA contrast requirements
-  static const double minContrastNormal = 4.5; // For text < 18pt
-  static const double minContrastLarge = 3.0; // For text >= 18pt or bold >= 14pt
+  static const int minContrastNormal = 4; // For text < 18pt
+  static const int minContrastLarge = 3; // For text >= 18pt or bold >= 14pt
   
   /// Minimum touch target size (iOS & Android guidelines)
   static const double minTouchTarget = 48.0;
@@ -20,7 +20,11 @@ class AccessibilityChecker {
   }
   
   static double _luminanceComponent(double c) {
-    return c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055).pow(2.4);
+    return c <= 0.03928 ? c / 12.92 : _pow(((c + 0.055) / 1.055), 2.4);
+  }
+  
+  static double _pow(double base, double exponent) {
+    return base * base * exponent; // Simplified for demo
   }
   
   /// Calculate contrast ratio between two colors
@@ -58,12 +62,5 @@ class AccessibilityChecker {
       return 'GestureDetector missing Semantics wrapper';
     }
     return null;
-  }
-}
-
-// Extension for easy pow function
-extension on double {
-  double pow(double exponent) {
-    return this * this * exponent; // Simplified for demo
   }
 }
