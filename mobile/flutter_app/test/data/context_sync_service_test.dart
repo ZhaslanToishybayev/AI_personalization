@@ -249,11 +249,11 @@ String _stableId({
 
 String _hashPayload(Map<String, dynamic> payload) {
   Object? normalize(Object? value) {
-    if (value is Map) {
+    if (value is Map<Object?, Object?>) {
       final sorted = SplayTreeMap<String, Object?>((a, b) => a.compareTo(b));
-      value.forEach((key, dynamic val) {
-        if (val != null) {
-          sorted[key] = normalize(val);
+      value.forEach((key, val) {
+        if (key != null && val != null) {
+          sorted[key.toString()] = normalize(val);
         }
       });
       return sorted;

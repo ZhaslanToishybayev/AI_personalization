@@ -46,11 +46,11 @@ class SuggestionService {
           userId: 'demo-user', // Будет заменено на реальный user id
           triggerContextIds: ['mock-session'], // Будет заменено на реальные
           generatedAt: DateTime.now(),
-          type: _mapSuggestionType(suggestion.type),
+          type: suggestion.type,
           message: suggestion.message,
           explanation: _createMockExplanation(), // Временно, пока API не возвращает правильный формат
           confidenceScore: suggestion.confidenceScore ?? 0.7,
-          status: _mapStatus(suggestion.status),
+          status: suggestion.status,
         );
       }).toList();
 
@@ -75,42 +75,6 @@ class SuggestionService {
       );
     } catch (e) {
       throw Exception('Failed to send feedback: $e');
-    }
-  }
-
-  SuggestionType _mapSuggestionType(String type) {
-    switch (type.toLowerCase()) {
-      case 'daily_plan':
-        return SuggestionType.dailyPlan;
-      case 'reminder':
-        return SuggestionType.reminder;
-      case 'summary':
-        return SuggestionType.summary;
-      case 'automation':
-        return SuggestionType.automation;
-      case 'alert':
-        return SuggestionType.alert;
-      default:
-        return SuggestionType.dailyPlan;
-    }
-  }
-
-  SuggestionStatus _mapStatus(String status) {
-    switch (status.toLowerCase()) {
-      case 'pending':
-        return SuggestionStatus.pending;
-      case 'delivered':
-        return SuggestionStatus.delivered;
-      case 'accepted':
-        return SuggestionStatus.accepted;
-      case 'declined':
-        return SuggestionStatus.declined;
-      case 'snoozed':
-        return SuggestionStatus.snoozed;
-      case 'expired':
-        return SuggestionStatus.expired;
-      default:
-        return SuggestionStatus.pending;
     }
   }
 

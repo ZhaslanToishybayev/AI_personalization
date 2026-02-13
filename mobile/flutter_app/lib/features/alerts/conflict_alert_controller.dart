@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/core/analytics/analytics_service.dart';
 import 'package:flutter_app/core/config/app_config.dart';
-import 'package:flutter_app/data/assistant_api_client.dart';
+import 'package:flutter_app/data/assistant_api_client.dart' show AssistantApiClient;
 import 'package:flutter_app/data/assistant_api_client_provider.dart';
 import 'package:flutter_app/domain/user_profile.dart';
 import 'package:flutter_app/features/alerts/conflict_alert_banner.dart';

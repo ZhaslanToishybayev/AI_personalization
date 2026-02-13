@@ -1,6 +1,6 @@
 import 'package:flutter_app/core/analytics/analytics_service.dart';
 import 'package:flutter_app/core/config/app_config.dart';
-import 'package:flutter_app/data/assistant_api_client.dart';
+import 'package:flutter_app/data/assistant_api_client.dart' show AssistantApiClient;
 import 'package:flutter_app/data/assistant_api_client_provider.dart';
 import 'package:flutter_app/features/alerts/conflict_alert_controller.dart';
 import 'package:flutter_app/services/notification_service.dart';
